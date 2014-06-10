@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es"
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewComprasProductosTitle}"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="body">
+            <div class="span12">
+
+                <ul class="breadcrumb">
+                    <li><a href="">Productos</a> <span class="divider">/</span></li>
+                    <li><a href="">Ver detalles</a> </li>
+                </ul>
+                <h3>Producto</h3>
+                
+                <div class="well">
+                    <center>
+                        <h:form>
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid columns="2">
+                                <h:outputText value="#{bundle.ViewComprasProductosLabel_id}"/>
+                                <h:outputText value="#{comprasProductosController.selected.id}" title="#{bundle.ViewComprasProductosTitle_id}"/>
+                                <h:outputText value="#{bundle.ViewComprasProductosLabel_cantidad}"/>
+                                <h:outputText value="#{comprasProductosController.selected.cantidad}" title="#{bundle.ViewComprasProductosTitle_cantidad}"/>
+                                <h:outputText value="#{bundle.ViewComprasProductosLabel_valorProducto}"/>
+                                <h:outputText value="#{comprasProductosController.selected.valorProducto}" title="#{bundle.ViewComprasProductosTitle_valorProducto}"/>
+                                <h:outputText value="#{bundle.ViewComprasProductosLabel_producto}"/>
+                                <h:outputText value="#{comprasProductosController.selected.producto}" title="#{bundle.ViewComprasProductosTitle_producto}"/>
+                                <h:outputText value="#{bundle.ViewComprasProductosLabel_compra}"/>
+                                <h:outputText value="#{comprasProductosController.selected.compra}" title="#{bundle.ViewComprasProductosTitle_compra}"/>
+                            </h:panelGrid>
+                            <br />
+                            <div class="control-group">
+                                <div class="controls">
+                                    <h:commandLink action="#{comprasProductosController.destroyAndView}" title="Pulse para eliminar " value="#{bundle.ViewComprasProductosDestroyLink}" styleClass="btn btn-small btn-danger" />
+                                </div>
+                            </div>
+
+                            <br />
+                            <br />
+                            <h:link outcome="Edit" value="#{bundle.ViewComprasProductosEditLink}" title="Enlace para editar "/>
+                            <br />
+                            <h:commandLink action="#{comprasProductosController.prepareCreate}" title="Enlace para crear compras producto" value="#{bundle.ViewComprasProductosCreateLink}" />
+                            <br />
+                            <h:commandLink action="#{comprasProductosController.prepareList}" title="Enlace a lista de Compras productos" value="#{bundle.ViewComprasProductosShowAllLink}"/>
+                            <br />
+                            <br />
+                            <h:link outcome="/index" title="Enlace a la página principal de administración" value="#{bundle.ViewComprasProductosIndexLink}"/>
+
+                        </h:form>
+                    </center>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

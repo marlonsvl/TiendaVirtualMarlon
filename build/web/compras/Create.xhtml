@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es"
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateComprasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li><a href="">Compras</a> <span class="divider">/</span></li>
+                    <li><a href="">Lista de Compras</a> <span class="divider">/</span></li>
+                    <li class="active">Nueva Compra</li>
+                </ul>
+                <h3>Nueva Compra</h3>	
+                <div class="well">
+
+                    <center>
+                        <h:form>
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="#{bundle.CreateComprasLabel_id}" for="id" />
+                                <h:inputText id="id" value="#{comprasController.selected.id}" title="#{bundle.CreateComprasTitle_id}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_id}"/>
+                                <h:outputLabel value="#{bundle.CreateComprasLabel_fecha}" for="fecha" />
+                                <h:inputText id="fecha" value="#{comprasController.selected.fecha}" title="#{bundle.CreateComprasTitle_fecha}" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:inputText>
+                                <h:outputLabel value="#{bundle.CreateComprasLabel_iva}" for="iva" />
+                                <h:inputText id="iva" value="#{comprasController.selected.iva}" title="#{bundle.CreateComprasTitle_iva}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_iva}"/>
+                                <h:outputLabel value="#{bundle.CreateComprasLabel_subtotal}" for="subtotal" />
+                                <h:inputText id="subtotal" value="#{comprasController.selected.subtotal}" title="#{bundle.CreateComprasTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_subtotal}"/>
+                                <h:outputLabel value="#{bundle.CreateComprasLabel_total}" for="total" />
+                                <h:inputText id="total" value="#{comprasController.selected.total}" title="#{bundle.CreateComprasTitle_total}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_total}"/>
+                                <h:outputLabel value="#{bundle.CreateComprasLabel_cliente}" for="cliente" />
+                                <h:selectOneMenu id="cliente" value="#{comprasController.selected.cliente}" title="#{bundle.CreateComprasTitle_cliente}" required="true" requiredMessage="#{bundle.CreateComprasRequiredMessage_cliente}">
+                                    <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <br />
+                            <div class="control-group">
+                                <div class="controls">
+                                    <h:commandLink action="#{comprasController.create}" title="Pulse para crear una nueva compra" value="#{bundle.CreateComprasSaveLink}" styleClass="btn btn-small btn-success" />
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <h:commandLink action="#{comprasController.prepareList}" title="Enlace para listar todos los registros" value="#{bundle.CreateComprasShowAllLink}" immediate="true"/>
+                            <br />
+                            <br />
+                            <h:link outcome="/index" title="Enlace para ir a la página principal de administración" value="#{bundle.CreateComprasIndexLink}"/>
+                        </h:form>
+                    </center>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

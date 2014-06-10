@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    lang="es"
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+    <h:head>
+        <title>Tienda Virtual - Página Principal de Administración</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet id="callCss" name="themes/bootshop/bootstrap.min.css" />
+        <h:outputStylesheet name="themes/css/base.css" />
+        <!-- Bootstrap style responsive -->	
+        <h:outputStylesheet name="themes/css/bootstrap-responsive.min.css" />
+        <h:outputStylesheet name="themes/css/font-awesome.css" />
+        <!-- Google-code-prettify -->	
+        <h:outputStylesheet name="themes/js/google-code-prettify/prettify.css" />
+        <!-- fav and touch icons -->
+        <h:outputStylesheet name="themes/images/ico/favicon.ico" />
+        <h:outputStylesheet name="themes/images/ico/apple-touch-icon-144-precomposed.png"/>
+        <h:outputStylesheet name="themes/images/ico/apple-touch-icon-114-precomposed.png"/>
+        <h:outputStylesheet name="themes/images/ico/apple-touch-icon-72-precomposed.png"/>
+        <h:outputStylesheet name="themes/images/ico/apple-touch-icon-57-precomposed.png"/>
+        <style type="text/css" id="enject"></style>
+    </h:head>
+    <h:body>
+        <div id="header">
+            <div class="container">
+                <div id="welcomeLine" class="row" title="Ingreso de Usuarios">
+                    <div class="span6">Bienvenido <strong> #{loginController.usuario.username} !</strong></div>
+                    <div class="span6">
+                        <div class="pull-right">
+                            <h:link outcome="/login.xhtml" value="Cerrar Sesion" title="Cerrar sesión para ir al inicio de la aplicación"/>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navbar ================================================== -->
+                <div id="logoArea" class="navbar">
+                    <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <div class="navbar-inner">
+                        <h:link class="brand" outcome="/index" title="Enlace hacia la página principal de administración" >
+                            <h:graphicImage name="themes/images/logo.png" alt="Tienda Virtual" />
+                        </h:link>
+                        <ul id="topMenu" class="nav pull-right">
+                            <li class="">
+                                <h:link outcome="/usuarios/List" value="Usuarios" title="Enlace para la administración de usuarios" />
+                            </li>
+                            <!--
+                            <li class="">
+                                <h:link outcome="/clientes/List" value="Clientes" title="Enlace para la administración de clientes"/>
+                            </li>
+                            <li class="">
+                                <h:link outcome="/compras/List" value="Compras" title="Enlace para la administración de compras" />
+                            </li>
+                            <li class="">
+                                <h:link outcome="/comprasProductos/List" value="ComprasProductos" title="Enlace para la administración de compras productos" />
+                            </li>
+                            -->
+                            <li class="">
+                                <h:link outcome="/productos/List" value="Productos" title="Enlace para la administración de productos"/>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End====================================================================== -->
+        <div id="carouselBlk">
+            <div id="myCarousel" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="container">
+                            <h:graphicImage name="themes/images/carousel/2.png" alt="" style="width:100%" />
+                            <div class="carousel-caption">
+                                <h4>Imágen Decorativa</h4>
+                                <p>Imágen de un producto para la tienda virtual</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div> 
+        </div>
+        
+    </h:body>
+
+</html>
+

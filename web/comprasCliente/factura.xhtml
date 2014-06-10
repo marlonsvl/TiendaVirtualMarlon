@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="es" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      >
+
+    <ui:composition template="/templateClientes.xhtml">
+        <ui:define name="title" >
+            Factura
+        </ui:define>
+        <ui:define name="body">
+
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li><h1>Factura</h1></li>
+                </ul>	
+                <div class="well">
+                    <p:panel id="panel1" header="Factura del Cliente: #{facturaController.cliente.nombres} #{facturaController.cliente.apellidos}" style="width: 50%">
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                        <p>Codigo: #{productosActivosController.current.cod} </p>
+                        <p>Nombre: #{productosActivosController.current.nombre} </p>
+                        <p>Precio: #{productosActivosController.current.precio} </p>
+                        <p>Stock: #{productosActivosController.current.cantidad} </p>
+                        <p:outputLabel value="Seleccione la cantidad: " for="txtcantidad"/>
+                        <p:inputText id="txtcantidad" value="#{facturaController.cantidadSeleccionada}" validatorMessage="Es requerido (Solo Númmeros)" >
+                            <f:convertNumber integerOnly="true"  ></f:convertNumber>
+                        </p:inputText>
+                    </p:panel>
+                    <p:commandButton value="Comprar" title="Pulse el botón para comprar" action="#{facturaController.comprar()}" update="panel1" >
+                        <p:confirm header="Confirmación" message="Estas seguro de realizar la compra?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:commandButton value="Ver detalle" title="Pulse para ver el detalle completo de la compra" action="#{facturaController.verDetalle()}" update="dialogDetalle" />
+                    <br/>
+                    <h:commandLink value="Compras" styleClass="btn btn-small" title="Enlace que nos lleva a la página de compras del producto" action="#{facturaController.regresar()}" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode" >  
+
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+
+                    </p:confirmDialog> 
+                    <div role="dialog">
+                        <p:dialog  id="dialogDetalle" widgetVar="dlgd" showEffect="blind" hideEffect="explode" focus="dialogDetalle" closeOnEscape="true" footer="Pulse la tecla Escape para salir del Popup" header="Información del detalle del Producto" modal="true">
+                            <p:panel header="Compras del usuario: ">
+                                <p>Fecha: #{facturaController.compras.fecha} </p>
+                                <p>Nombre del Producto: #{productosActivosController.current.nombre} </p>
+                                <p>Precio: #{productosActivosController.current.precio} </p>
+                                <p>Cantidad Seleccionada: #{facturaController.cantidadSeleccionada} </p>
+                                <p>Subtotal: #{facturaController.compras.subtotal} </p>
+                                <p>Total: #{facturaController.compras.total} </p>
+                            </p:panel>
+                        </p:dialog>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

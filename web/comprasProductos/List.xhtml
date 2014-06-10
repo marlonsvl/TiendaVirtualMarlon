@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es"
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListComprasProductosTitle}"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="body">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li><a href="">Compras Productos</a> </li>
+                </ul>
+                <h3>Compras Productos</h3>	
+                <div class="well">
+                    <center>
+                        
+            <h:form >
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <h:outputText escape="false" value="#{bundle.ListComprasProductosEmpty}" rendered="#{comprasProductosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{comprasProductosController.items.rowCount > 0}">
+                    <h:outputText value="#{comprasProductosController.pagination.pageFirstItem + 1}..#{comprasProductosController.pagination.pageLastItem + 1}/#{comprasProductosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{comprasProductosController.previous}" value="#{bundle.Previous} #{comprasProductosController.pagination.pageSize}" rendered="#{comprasProductosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{comprasProductosController.next}" value="#{bundle.Next} #{comprasProductosController.pagination.pageSize}" rendered="#{comprasProductosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{comprasProductosController.items}" var="item" styleClass="table table-bordered" >
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComprasProductosTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComprasProductosTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComprasProductosTitle_valorProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComprasProductosTitle_producto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.producto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComprasProductosTitle_compra}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.compra}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{comprasProductosController.prepareView}" title="Pulse para ver detalles" value="#{bundle.ListComprasProductosViewLink}" styleClass="btn btn-small btn-success" />
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{comprasProductosController.prepareEdit}" title="Pulse para editar el registro seleccionado" value="#{bundle.ListComprasProductosEditLink}" styleClass="btn btn-small btn-success" />
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{comprasProductosController.destroy}" title="Pulse para eliminar el registro" value="#{bundle.ListComprasProductosDestroyLink}" styleClass="btn btn-small btn-danger" />
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{comprasProductosController.prepareCreate}" title="Pulse para crear un nuevo registro" value="#{bundle.ListComprasProductosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" title="Enlace para ver la lista de Compras productos" value="#{bundle.ListComprasProductosIndexLink}"/>
+            </h:form>
+                    </center>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

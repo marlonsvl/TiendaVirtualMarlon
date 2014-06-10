@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductosTitle}" ></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li><h1>Productos</h1></li>
+                </ul>	
+                <div class="well">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <h:outputText escape="false" value="#{bundle.ListProductosEmpty}" rendered="#{productosController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{productosController.items.rowCount > 0}">
+                        <h:outputText value="#{productosController.pagination.pageFirstItem + 1}..#{productosController.pagination.pageLastItem + 1}/#{productosController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{productosController.previous}" title="Enlace para la página previa" value="#{bundle.Previous} #{productosController.pagination.pageSize}" rendered="#{productosController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{productosController.next}" title="Enlace hacia la siguiente página" value="#{bundle.Next} #{productosController.pagination.pageSize}" rendered="#{productosController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{productosController.items}" summary="Lista de Productos" var="item" styleClass="table table-bordered">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListProductosTitle_codigo}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cod}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListProductosTitle_nombre}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombre}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListProductosTitle_precio}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.precio}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListProductosTitle_cantidad}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.cantidad}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListProductosTitle_estado}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.estado}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp; Acciones para la gestión de productos"/>
+                                </f:facet>
+                                <h:commandLink action="#{productosController.prepareView}" title="Ver detalles del producto #{item.nombre}" value="#{bundle.ListProductosViewLink}" styleClass="btn btn-small" />
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{productosController.prepareEdit}" title="Editar el producto #{item.nombre}" value="#{bundle.ListProductosEditLink}" styleClass="btn btn-small" />
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{productosController.prepareReponer}" title="Reposición del producto #{item.nombre}" value="#{bundle.ListProductosReponerLink}" styleClass="btn btn-small " />
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{productosController.prepareAltaYBaja}" title="Dar de alta o baja del producto #{item.nombre}" value="#{bundle.ListProductosAltaBajaLink}" styleClass="btn btn-small " />
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{productosController.destroy}" title="Eliminar el producto #{item.nombre}" value="#{bundle.ListProductosDestroyLink}" styleClass="btn btn-small "/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <h:commandLink action="#{productosController.prepareCreate}" title="Pulse para crear un nuevo producto"  value="#{bundle.ListProductosCreateLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" title="Enlace a la página principal de administración"  value="#{bundle.ListProductosIndexLink}"/>
+
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

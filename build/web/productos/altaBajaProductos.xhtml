@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="es" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Alta y baja de Productos"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="span12">
+                <h1>Activar Producto</h1>
+                <ul class="breadcrumb">
+                    <li><h:link outcome="/productos/List" title="Lista de productos" value="Productos"/> / </li>
+                    <li >Alta y Baja de Productos</li>
+                </ul>
+                <div class="well">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <p>#{bundle.EditProductosLabel_codigo} #{productosController.selected.cod}</p>
+                    <p>#{bundle.EditProductosLabel_nombre} #{productosController.selected.nombre}</p>
+                    <p>#{bundle.EditProductosLabel_precio} #{productosController.selected.precio} </p>
+                    <p>#{bundle.EditProductosLabel_cantidad} #{productosController.selected.cantidad} </p>
+                    
+                    <h:outputLabel value="#{bundle.EditProductosLabel_estado}" for="estado" />
+                    <div role="listbox">
+                        <h:selectOneMenu id="estado" value="#{productosController.selected.estado}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_estado}" >  
+                            <f:selectItem  itemLabel="Alta del Producto" itemValue="Activado"  />  
+                            <f:selectItem  itemLabel="Baja del Producto" itemValue="Desactivado" />  
+                        </h:selectOneMenu>  
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <h:commandLink action="#{productosController.update}" title="Pulse para Modificar datos del producto" value="#{bundle.EditProductosSaveLink}" styleClass="btn btn-small" />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <h:link outcome="View" title="Ver detalle del productos" value="#{bundle.EditProductosViewLink}"/>
+                    <br />
+                    <h:commandLink action="#{productosController.prepareList}"  title="Enlace lista de productos" value="#{bundle.EditProductosShowAllLink}" immediate="true"/>
+                    <br />
+
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

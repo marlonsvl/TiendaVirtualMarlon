@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListUsuariosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li><h1>Lista de Usuarios</h1> </li>
+                </ul>
+                <div class="well">
+
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle.ListUsuariosEmpty}" rendered="#{usuariosController.items.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{usuariosController.items.rowCount > 0}">
+                        <h:outputText value="#{usuariosController.pagination.pageFirstItem + 1}..#{usuariosController.pagination.pageLastItem + 1}/#{usuariosController.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink action="#{usuariosController.previous}" value="#{bundle.Previous} #{usuariosController.pagination.pageSize}" rendered="#{usuariosController.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink action="#{usuariosController.next}" value="#{bundle.Next} #{usuariosController.pagination.pageSize}" rendered="#{usuariosController.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{usuariosController.items}" var="item" styleClass="table table-bordered">
+                            <h:column>
+                                <f:facet name="header">
+                                    <center><h:outputText value="#{bundle.ListUsuariosTitle_id}"/></center>
+                                </f:facet>
+                                <center><h:outputText value="#{item.id}"/></center>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <center><h:outputText value="#{bundle.ListUsuariosTitle_username}"/></center>
+                                </f:facet>
+                                <center><h:outputText value="#{item.username}"/></center>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <center><h:outputText value="#{bundle.ListUsuariosTitle_password}"/></center>
+                                </f:facet>
+                                <center><h:outputText value="#{item.password}"/></center>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <center><h:outputText value="#{bundle.ListUsuariosTitle_rolename}"/></center>
+                                </f:facet>
+                                <center><h:outputText value="#{item.rolename}"/></center>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+
+                                <h:commandLink action="#{usuariosController.prepareView}" title="Pulse para ver datos usuario" value="#{bundle.ListUsuariosViewLink}" styleClass="btn btn-small btn-success" />
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{usuariosController.prepareEdit}" title="Pulse para editar el usuario " value="#{bundle.ListUsuariosEditLink}" styleClass="btn btn-small btn-success" />
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{usuariosController.destroy}" title="Pulse para eliminar el usuario" value="#{bundle.ListUsuariosDestroyLink}" styleClass="btn btn-small btn-danger" />
+
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                    <br />
+                    <h:commandLink action="#{usuariosController.prepareCreate}" title="Crear nuevo usuario" value="#{bundle.ListUsuariosCreateLink}"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" title="Regresar a la página principal" value="#{bundle.ListUsuariosIndexLink}"/>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

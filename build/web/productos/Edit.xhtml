@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Editar Productos"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="span12">
+                <h1>Editar Producto</h1>	
+                <ul class="breadcrumb">
+                    <li><h:link outcome="/productos/List" title="Lista de productos" value="Productos"/> / </li>
+                    <li >Editar Producto</li>
+                </ul>
+                <div class="well">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditProductosLabel_codigo}" for="codigo" />
+                        <h:inputText id="codigo" value="#{productosController.selected.cod}" title="#{bundle.EditProductosTitle_codigo}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_codigo}"/>
+                        <h:outputLabel value="#{bundle.EditProductosLabel_nombre}" for="nombre" />
+                        <h:inputText id="nombre" value="#{productosController.selected.nombre}" title="#{bundle.EditProductosTitle_nombre}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_nombre}"/>
+                        <h:outputLabel value="#{bundle.EditProductosLabel_precio}" for="precio" />
+                        <h:inputText id="precio" value="#{productosController.selected.precio}" title="#{bundle.EditProductosTitle_precio}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_precio}"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="1">
+                        <div class="control-group">
+                            <div class="controls">
+                                <h:commandLink action="#{productosController.update}" title="Pulse para grabar los datos ingresados" value="#{bundle.EditProductosSaveLink}" styleClass="btn btn-small" />
+                            </div>
+                        </div>
+                    </h:panelGrid>
+                    <br />
+                    <br />
+                    <h:link outcome="View" title="Enlace a la administración del producto" value="#{bundle.EditProductosViewLink}"/>
+                    <br />
+                    <h:commandLink action="#{productosController.prepareList}" title="Enlace lista de productos" value="#{bundle.EditProductosShowAllLink}" immediate="true"/>
+                    <br />
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

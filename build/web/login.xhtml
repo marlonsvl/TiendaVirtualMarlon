@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head lang="es">
+        <title>Tienda Virtual</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet id="callCss" name="themes/bootshop/bootstrap.min.css" />
+        <h:outputStylesheet name="themes/css/base.css" />
+        <!-- Bootstrap style responsive -->	
+        <h:outputStylesheet name="themes/css/bootstrap-responsive.min.css" />
+        <h:outputStylesheet name="themes/css/font-awesome.css" />
+        <!-- Google-code-prettify -->	
+        <h:outputStylesheet name="themes/js/google-code-prettify/prettify.css" />
+        <!-- fav and touch icons -->
+        <h:outputStylesheet name="themes/images/ico/favicon.ico" />
+        <h:outputStylesheet name="themes/images/ico/apple-touch-icon-144-precomposed.png"/>
+        <h:outputStylesheet name="themes/images/ico/apple-touch-icon-114-precomposed.png"/>
+        <h:outputStylesheet name="themes/images/ico/apple-touch-icon-72-precomposed.png"/>
+        <h:outputStylesheet name="themes/images/ico/apple-touch-icon-57-precomposed.png"/>
+        <style type="text/css" id="enject"></style>
+    </h:head>
+
+    <h:body lang="es">
+        <div id="header">
+            <div class="container">
+                <!-- Navbar ================================================== -->
+                <div id="logoArea" class="navbar">
+                    <h1 tabindex="0">Inicio de Sesión</h1>
+                    <div class="navbar-inner">
+                        <h:graphicImage name="themes/images/logo.png" alt="" />
+                        <div id="formdiv" class="nav pull-right" title="Ingreso de Usuarios">
+                            <h:form styleClass="form-inline navbar-search">
+                                <p:inputText id="usuario" title="Ingrese el Nombre de usuario" required="true" value="#{loginController.usuario.username}" />
+                                <p:watermark for="usuario" value="Usuario" />
+                                <p:password id="clave" title="Ingrese su clave" rendered="true" value="#{loginController.usuario.password}" />
+                                <p:watermark for="clave" value="Clave" />
+                                <p:commandButton value="Ingresar" title="Pulse Ingresar para iniciar sesión" action="#{loginController.ingresar()}" />
+                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End====================================================================== -->
+        <div id="carouselBlk">
+            <div id="myCarousel" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="container">
+                            <h:graphicImage name="themes/images/carousel/3.png" alt="" />
+                            <div class="carousel-caption">
+                                <h4>Imágen Decorativa</h4>
+                                <p>Imágen de un producto para la tienda virtual</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div> 
+        </div>
+
+    </h:body>
+</html>

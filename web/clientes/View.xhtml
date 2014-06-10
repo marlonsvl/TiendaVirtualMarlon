@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es"
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewClientesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="span12">
+
+                <ul class="breadcrumb">
+                    <li><a href="">Clientes</a> <span class="divider">/</span></li>
+                    <li><a href="">Ver detalles</a> </li>
+                </ul>
+                <h3>Clientes</h3>	
+                <div class="well">
+                    
+                        <h:form>
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid columns="2">
+                                <h:outputText value="#{bundle.ViewClientesLabel_cedula}"/>
+                                <h:outputText value="#{clientesController.selected.cedula}" title="#{bundle.ViewClientesTitle_cedula}"/>
+                                <h:outputText value="#{bundle.ViewClientesLabel_nombres}"/>
+                                <h:outputText value="#{clientesController.selected.nombres}" title="#{bundle.ViewClientesTitle_nombres}"/>
+                                <h:outputText value="#{bundle.ViewClientesLabel_apellidos}"/>
+                                <h:outputText value="#{clientesController.selected.apellidos}" title="#{bundle.ViewClientesTitle_apellidos}"/>
+                                <h:outputText value="#{bundle.ViewClientesLabel_direccion}"/>
+                                <h:outputText value="#{clientesController.selected.direccion}" title="#{bundle.ViewClientesTitle_direccion}"/>
+                                <h:outputText value="#{bundle.ViewClientesLabel_telefono}"/>
+                                <h:outputText value="#{clientesController.selected.telefono}" title="#{bundle.ViewClientesTitle_telefono}"/>
+                                <h:outputText value="#{bundle.ViewClientesLabel_usuario}"/>
+                                <h:outputText value="#{clientesController.selected.usuario}" title="#{bundle.ViewClientesTitle_usuario}"/>
+                            </h:panelGrid>
+                            <br />
+                            <div class="control-group">
+                                <div class="controls">
+                                    <h:commandLink action="#{clientesController.destroyAndView}" title="Pulse para eliminar el cliente" value="#{bundle.ViewClientesDestroyLink}" styleClass="btn btn-small btn-danger" />
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <h:link outcome="Edit" title="Editar cliente" value="#{bundle.ViewClientesEditLink}"/>
+                            <br />
+                            <h:commandLink action="#{clientesController.prepareCreate}" title="Crear nuevo cliente" value="#{bundle.ViewClientesCreateLink}" />
+                            <br />
+                            <h:commandLink action="#{clientesController.prepareList}" title="Listar todos los clientes" value="#{bundle.ViewClientesShowAllLink}"/>
+                            <br />
+                            <br />
+                            <h:link outcome="/index" title="Enlace a la página principal de administración" value="#{bundle.ViewClientesIndexLink}"/>
+
+                        </h:form>
+                    
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

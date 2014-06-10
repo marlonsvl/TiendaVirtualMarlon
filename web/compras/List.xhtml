@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es" 
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListComprasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li><a href="">Lista de Compras</a> </li>
+                </ul>
+                <h3>Compras</h3>	
+                <div class="well">
+                    <center>
+                        <h:form >
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:outputText escape="false" value="#{bundle.ListComprasEmpty}" rendered="#{comprasController.items.rowCount == 0}"/>
+                            <h:panelGroup rendered="#{comprasController.items.rowCount > 0}">
+                                <h:outputText value="#{comprasController.pagination.pageFirstItem + 1}..#{comprasController.pagination.pageLastItem + 1}/#{comprasController.pagination.itemsCount}"/>&nbsp;
+                                <h:commandLink action="#{comprasController.previous}" value="#{bundle.Previous} #{comprasController.pagination.pageSize}" rendered="#{comprasController.pagination.hasPreviousPage}"/>&nbsp;
+                                <h:commandLink action="#{comprasController.next}" value="#{bundle.Next} #{comprasController.pagination.pageSize}" rendered="#{comprasController.pagination.hasNextPage}"/>&nbsp;
+                                <h:dataTable value="#{comprasController.items}" var="item" styleClass="table table-bordered" >
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComprasTitle_id}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.id}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComprasTitle_fecha}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fecha}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComprasTitle_iva}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.iva}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComprasTitle_subtotal}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.subtotal}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComprasTitle_total}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.total}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListComprasTitle_cliente}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.cliente}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="&nbsp;"/>
+                                        </f:facet>
+                                        <h:commandLink action="#{comprasController.prepareView}" title="Pulse para ver detalles del registro" value="#{bundle.ListComprasViewLink}" styleClass="btn btn-small btn-success" />
+                                        <h:outputText value=" "/>
+                                        <h:commandLink action="#{comprasController.prepareEdit}" title="Pulse para editar el registro" value="#{bundle.ListComprasEditLink}" styleClass="btn btn-small btn-success" />
+                                        <h:outputText value=" "/>
+                                        <h:commandLink action="#{comprasController.destroy}" title="Pulse para eliminar el registro" value="#{bundle.ListComprasDestroyLink}" styleClass="btn btn-small btn-danger" />
+                                    </h:column>
+                                </h:dataTable>
+                            </h:panelGroup>
+                            <br />
+                            <h:commandLink action="#{comprasController.prepareCreate}" title="Enlace para crear un nuevo registro" value="#{bundle.ListComprasCreateLink}"/>
+                            <br />
+                            <br />
+                            <h:link outcome="/index" title="Enlace para ir a la página principal de administración" value="#{bundle.ListComprasIndexLink}"/>
+                        </h:form>
+                    </center>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
